@@ -1,0 +1,81 @@
+---
+title: Tic Tac Toe
+---
+<div class="welcome">
+	<script language="JavaScript">
+		var user = "X";
+		var AIvar = "O";
+		var aval = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+		function choose(vr, vrai){
+			user = new String(vr);
+			AIvar = new String(vrai);
+			$("input").attr("disabled", false);
+			$(".userval").attr("disabled", "disabled");
+		};
+
+		function won(){
+			$("#tictactoe input").attr("value", "");
+		};
+
+		function AI(){
+			var aival = aval[Math.floor(Math.random()*aval.length)];
+			$("#btn" + aival).attr("value", AIvar);
+			$("#btn" + aival).attr("disabled", "disabled");
+			var index = aval.indexOf(aival);
+			aval.splice(index, 1);
+		};
+
+		function fillin(a){
+			$("#btn" + a).attr("value", user);
+			$("#btn" + a).attr("disabled", "disabled");
+			var index = aval.indexOf(a);
+			aval.splice(index, 1);
+			AI();
+		};
+
+		var clicked = [1,2];
+		var wins = [[1,2,3],[4,5,6],[7,8,9]];
+
+		function contain(a){
+			if(clicked.indexOf(a) != -1){
+				return true;
+			} else {
+				return false;
+			};
+		};
+
+		function contains(){
+			for (i=0; i<wins.length;i++){
+				return wins[i].map(contain);
+			};
+		};
+
+	</script>
+	<form action="" method="get">
+		<div>
+			<h1>Choose X or O</h1>
+			<input type="button" onclick="won()" value="won">
+			<input type="button" onclick="choose('X', 'O')" value="X" class="userval">
+			<input type="button" onclick="choose('O', 'X')" value="O" class="userval">
+		</div>
+		<table id="tictactoe">
+			<tr>
+				<td><input type="button" onclick="fillin(1)" id="btn1" disabled="disabled"></td>
+				<td><input type="button" onclick="fillin(2)" id="btn2" disabled="disabled"></td>
+				<td><input type="button" onclick="fillin(3)" id="btn3" disabled="disabled"></td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="fillin(4)" id="btn4" disabled="disabled"></td>
+				<td><input type="button" onclick="fillin(5)" id="btn5" disabled="disabled"></td>
+				<td><input type="button" onclick="fillin(6)" id="btn6" disabled="disabled"></td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="fillin(7)" id="btn7" disabled="disabled"></td>
+				<td><input type="button" onclick="fillin(8)" id="btn8" disabled="disabled"></td>
+				<td><input type="button" onclick="fillin(9)" id="btn9" disabled="disabled"></td>
+			</tr>
+		</table>	
+	</form>
+	
+</div><!-- .welcome -->

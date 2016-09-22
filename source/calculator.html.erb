@@ -1,0 +1,67 @@
+---
+title: Calculator
+---
+<div class="welcome">
+	<script language="JavaScript">
+
+	</script>
+	<div id="inputs"></div>
+	<script language="JavaScript">
+		var inputs = "";
+		function iclick(value){
+			inputs += value;
+			$("#inputs").html(inputs);
+		};
+		
+		function calculate(){
+			inputs = new String(eval(inputs));
+			$("#inputs").html(inputs);
+		};
+
+		function AC(){
+			inputs = "";
+			$("#inputs").html(inputs);
+		};
+
+		function CE(){
+			inputs = inputs.slice(0, inputs.length - 1);
+			$("#inputs").html(inputs);
+		};
+
+	</script>
+	<form action="" METHOD="GET">
+		<table>
+			<tr>
+				<td><input type="button" name="num" value="AC" onClick="AC()"></td>
+				<td><input type="button" name="num" value="CE" onClick="CE()"></td>
+				<td><input type="button" name="num" value="%" onClick="iclick('%')"></td>
+				<td><input type="button" name="num" value="/" onClick="iclick('/')"></td>
+			</tr>
+			<tr>
+				<td><input type="button" name="num" value="1" onClick="iclick(1)"></td>
+				<td><input type="button" name="num" value="2" onClick="iclick(2)"></td>
+				<td><input type="button" name="num" value="3" onClick="iclick(3)"></td>
+				<td><input type="button" name="num" value="*" onClick="iclick('*')"></td>
+			</tr>
+			<tr>
+				<td><input type="button" name="num" value="4" onClick="iclick(4)"></td>
+				<td><input type="button" name="num" value="5" onClick="iclick(5)"></td>
+				<td><input type="button" name="num" value="6" onClick="iclick(6)"></td>
+				<td><input type="button" name="num" value="-" onClick="iclick('-')"></td>
+			</tr>
+			<tr>
+				<td><input type="button" name="num" value="7" onClick="iclick(7)"></td>
+				<td><input type="button" name="num" value="8" onClick="iclick(8)"></td>
+				<td><input type="button" name="num" value="9" onClick="iclick(9)"></td>
+				<td><input type="button" name="num" value="+" onClick="iclick('+')"></td>
+			</tr>
+			<tr>
+				<td><input type="button" name="num" value="." onClick="iclick('.')"></td>
+				<td><input type="button" name="num" value="0" onClick="iclick(0)"></td>
+				<td><input type="button" name="num" value="Ans" onClick="iclick()"></td>
+				<td><input type="button" name="num" value="=" onClick="calculate()"></td>
+			</tr>
+		</table>
+	</form>
+	
+</div><!-- .welcome -->

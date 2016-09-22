@@ -1,0 +1,27 @@
+---
+title: Twitch TV
+---
+<div class="welcome">
+	<script language="JavaScript">
+	var streamers = ["comster404", "brunofin" ,"freecodecamp", "storbeck", "terakilobyte", "habathcx","RobotCaleb","thomasballinger","noobs2ninjas","beohoff","surefour","emongg"];
+	var url = "https://api.twitch.tv/kraken/streams/"
+	function twitcher () {
+		$.each(streamers, function(index, value){
+			$.getJSON(url + value, function(data) {
+				if (data.stream == null){
+					$("#offlinestreams").append("<li><a href=https://www.twitch.tv/" + value + " target='_blank'>" + value + " - Offline</a>" +"</li>");
+				} else {
+					$("#streams").append("<li><a href=https://www.twitch.tv/" + value + " target='_blank'>" + value + " - " + data.stream.game + ": " + data.stream.channel.status + "</a>"  + "</li>");
+				};
+			}).fail(function() {
+    			$("#inactivestreams").append("<li>" + value + " - Account Closed" + "</li>");
+  			});
+		});
+	};
+	twitcher();
+	</script>
+	<h1>Twitch TV Streamers</h1>
+	<ul id="streams"></ul>
+	<ul id="offlinestreams"></ul>
+	<ul id="inactivestreams"></ul>
+</div><!-- .welcome -->

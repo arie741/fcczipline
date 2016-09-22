@@ -1,0 +1,98 @@
+---
+title: Pomodoro
+---
+<div class="welcome">
+	<div id="timebtn">
+		<button onclick="tstart()">Start</button>	
+	</div>
+	<h1 id="times"></h1>
+	<ul>Break Length
+		<li><input onclick="addbr()" id="addbr" type="button" value="+"></li>
+		<li><h1 id="break"></h1></li>
+		<li><input onClick="reducbr()" id="reducbr" type="button" value="-"></li>
+	</ul>
+	<ul>Session Length
+		<li><input onclick="addss()" id="addss" type="button" value="+"></li>
+		<li><h1 id="session"></h1></li>
+		<li><input onClick="reducss()" id="reducss" type="button" value="-"></li>
+	</ul>
+	<script>
+
+	var stop = false;
+	var fixedtimes = 20;
+	var fixedbreaktimes = 5;
+	var times = fixedtimes;
+	var breaktimes = fixedbreaktimes;
+
+
+
+	function tstart(){	
+		stop = false;
+		setTimeout(redTimer, 1000);
+		$("#timebtn").html('<button onclick="tstop()">Stop</button>');
+		$("#addbr , #reducbr, #addss, #reducss").attr("disabled", "disabled	");
+	};
+
+	function tstop(){
+		stop = true;
+		$("#timebtn").html('<button onclick="tstart()">Start</button>');
+		$("#addbr , #reducbr, #addss, #reducss").attr("disabled", false);
+	};
+
+	function reducbr(){
+		fixedbreaktimes -= 1;
+		$("#break").html(fixedbreaktimes);
+	};
+
+	function addbr(){
+		fixedbreaktimes += 1;
+		$("#break").html(fixedbreaktimes);
+	};
+
+	function reducss(){
+		fixedtimes -= 1;
+		times = fixedtimes;
+		$("#session").html(fixedtimes);
+		$("#times").html(fixedtimes);
+	};
+
+	function addss(){
+		fixedtimes += 1;
+		times = fixedtimes;
+		$("#session").html(fixedtimes);
+		$("#times").html(fixedtimes);
+	};
+
+	$("#session").html(fixedtimes);
+	$("#break").html(fixedbreaktimes);
+	$("#times").html(new String(times));
+
+	function redTimer() {
+		if (stop == false) {
+			if (times <= 0){
+				breaktimes = fixedbreaktimes;
+				$("#times").html(new String(breaktimes));
+				setTimeout(breakTime, 1000);
+			} else {
+				times -= 1;
+				$("#times").html(new String(times));
+				setTimeout(redTimer, 1000);
+			};
+		};
+	};
+
+	function breakTime(){
+		if (stop == false) {
+			if (breaktimes <= 0){
+				times = fixedtimes;
+				$("#times").html(new String(times));
+				setTimeout(redTimer, 1000);
+			} else {
+				breaktimes -= 1;
+				$("#times").html(new String(breaktimes));
+				setTimeout(breakTime, 1000);
+			};
+		};
+	};
+	</script>
+</div>
